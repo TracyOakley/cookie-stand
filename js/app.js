@@ -149,3 +149,95 @@ let dubai = {
 dubai.calcCookiesPurchased();
 console.log(dubai.cookiesSoldEachHourArray.reduce((partSum,a)=>partSum+a, 0));
 dubai.render();
+
+// PARIS
+
+let paris = {
+  name: 'Paris',
+  min: 20,
+  max: 38,
+  avg: 2.3,
+  dailyTotal: 0,
+  cookiesSoldEachHourArray: [],
+
+  getRandomNumofCustomers: function(){
+    return Math.floor(Math.random()* (this.max - this.min +1) + this.min); //min & max inclusive
+  },
+
+  calcCookiesPurchased: function(){
+    for(let i =0;i<hours.length;i++){
+      this.cookiesSoldEachHourArray[i] = Math.round(this.getRandomNumofCustomers()*this.avg);
+    }
+  },
+
+  render: function(){
+    let label = document.createElement('label');
+    label.textContent = 'Paris';
+    cityList.appendChild(label);
+
+    let ul = document.createElement('ul');
+    ul.id = 'parisContainer';
+    cityList.appendChild(ul);
+
+    for(let i = 0; i<hours.length; i++){
+      let li = document.createElement('li');
+      li.textContent = `${hours[i]}: ${this.cookiesSoldEachHourArray[i]}`;
+      ul.appendChild(li);
+
+    }
+    let li = document.createElement('li');
+    li.textContent = `Total: ${this.cookiesSoldEachHourArray.reduce((partSum,a)=>partSum+a, 0)}`;
+    ul.appendChild(li);
+  }
+
+};
+
+paris.calcCookiesPurchased();
+console.log(paris.cookiesSoldEachHourArray.reduce((partSum,a)=>partSum+a, 0));
+paris.render();
+
+//LIMA
+
+let lima = {
+  name: 'Lima',
+  min: 2,
+  max: 16,
+  avg: 4.6,
+  dailyTotal: 0,
+  cookiesSoldEachHourArray: [],
+
+  getRandomNumofCustomers: function(){
+    return Math.floor(Math.random()* (this.max - this.min +1) + this.min); //min & max inclusive
+  },
+
+  calcCookiesPurchased: function(){
+    for(let i =0;i<hours.length;i++){
+      this.cookiesSoldEachHourArray[i] = Math.round(this.getRandomNumofCustomers()*this.avg);
+    }
+  },
+
+  render: function(){
+    let label = document.createElement('label');
+    label.textContent = 'Lima';
+    cityList.appendChild(label);
+
+    let ul = document.createElement('ul');
+    ul.id = 'limaContainer';
+    cityList.appendChild(ul);
+
+    for(let i = 0; i<hours.length; i++){
+      let li = document.createElement('li');
+      li.textContent = `${hours[i]}: ${this.cookiesSoldEachHourArray[i]}`;
+      ul.appendChild(li);
+
+    }
+    let li = document.createElement('li');
+    li.textContent = `Total: ${this.cookiesSoldEachHourArray.reduce((partSum,a)=>partSum+a, 0)}`;
+    ul.appendChild(li);
+  }
+
+};
+
+lima.calcCookiesPurchased();
+console.log(lima.cookiesSoldEachHourArray.reduce((partSum,a)=>partSum+a, 0));
+lima.render();
