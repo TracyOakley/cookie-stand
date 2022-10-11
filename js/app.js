@@ -7,8 +7,68 @@ console.log(cityList);
 
 let hours = ['6 am','7 am','8 am','9 am','10 am','11 am','12 pm.','1 pm.','2 pm.','3 pm.','4 pm.','5 pm.','6 pm.','7 pm.'];
 
-//SEATTLE
+//City Constructor
 
+let City = function(name,min,max,avg){
+  this.name = name;
+  this.min = min;
+  this.max = max;
+  this.avg = avg;
+  this.dailyTotal = 0;
+  this.cookiesSoldEachHourArray = [];
+};
+
+City.prototype.getRandomNumofCustomers = function(){
+  return Math.floor(Math.random()* (this.max - this.min +1) + this.min);
+};
+
+City.prototype.calcCookiesPurchased = function(){
+  for(let i =0;i<hours.length;i++){
+    this.cookiesSoldEachHourArray[i] = Math.round(this.getRandomNumofCustomers()*this.avg);
+  }
+};
+
+City.prototype.renderTable = function(){
+  
+}
+
+City.prototype.render = function(){
+  this.calcCookiesPurchased();
+
+  let label = document.createElement('label');
+  label.textContent = this.name;
+  cityList.appendChild(label);
+  
+  let ul = document.createElement('ul');
+  ul.id = 'seattleContainer';
+  cityList.appendChild(ul);
+  
+  for(let i = 0; i<hours.length; i++){
+    let li = document.createElement('li');
+    li.textContent = `${hours[i]}: ${this.cookiesSoldEachHourArray[i]}`;
+    ul.appendChild(li);
+    
+  }
+  let li = document.createElement('li');
+  li.textContent = `Total: ${this.cookiesSoldEachHourArray.reduce((partSum,a)=>partSum+a, 0)}`;
+  ul.appendChild(li);
+};
+
+let seattle = new City('Seattle',23,65,6.3);
+let tokyo = new City('Tokyo',3,24,1.2);
+let dubai = new City('Dubai',11,38,3.7);
+let paris = new City('Paris',20,38,2.3);
+let lima = new City('Lima',2,16,4.6);
+
+let cityArray = [seattle,tokyo,dubai,paris,lima];
+
+for(let i = 0;i<cityArray.length;i++){
+  cityArray[i].render();
+}
+
+
+//SEATTLE
+/*
 let seattle = {
   name: 'Seattle',
   min: 23,
@@ -59,6 +119,8 @@ console.log(seattle.cookiesSoldEachHourArray);
 seattle.render();
 
 //TOKYO
+
+
 
 let tokyo = {
   name: 'Tokyo',
@@ -241,3 +303,4 @@ let lima = {
 lima.calcCookiesPurchased();
 console.log(lima.cookiesSoldEachHourArray.reduce((partSum,a)=>partSum+a, 0));
 lima.render();
+*/
