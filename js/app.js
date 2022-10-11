@@ -5,7 +5,7 @@ let cityList = document.getElementById('cityContainer');
 
 console.log(cityList);
 
-let hours = ['6 am','7 am','8 am','9 am','10 am','11 am','12 pm.','1 pm.','2 pm.','3 pm.','4 pm.','5 pm.','6 pm.','7 pm.'];
+let hours = ['6 am','7 am','8 am','9 am','10 am','11 am','12 pm','1 pm','2 pm','3 pm','4 pm','5 pm','6 pm','7 pm'];
 
 //City Constructor
 
@@ -25,16 +25,32 @@ City.prototype.getRandomNumofCustomers = function(){
 City.prototype.calcCookiesPurchased = function(){
   for(let i =0;i<hours.length;i++){
     this.cookiesSoldEachHourArray[i] = Math.round(this.getRandomNumofCustomers()*this.avg);
+    this.dailyTotal += this.cookiesSoldEachHourArray[i];
   }
+  this.cookiesSoldEachHourArray[this.cookiesSoldEachHourArray.length] = this.dailyTotal;
 };
 
 City.prototype.renderTable = function(){
-  
-}
+
+  let tbody = document.querySelector('tbody');
+  let tr = document.createElement('tr');
+  tbody.appendChild(tr);
+
+  let td = document.createElement('td');
+  td.textContent = this.name;
+  tr.appendChild(td);
+
+  for(let i = 0; i < this.cookiesSoldEachHourArray.length; i++){
+    let td = document.createElement('td');
+    td.textContent = this.cookiesSoldEachHourArray[i];
+    tr.appendChild(td);
+  }
+};
 
 City.prototype.render = function(){
   this.calcCookiesPurchased();
-
+  this.renderTable();
+/*
   let label = document.createElement('label');
   label.textContent = this.name;
   cityList.appendChild(label);
@@ -52,8 +68,33 @@ City.prototype.render = function(){
   let li = document.createElement('li');
   li.textContent = `Total: ${this.cookiesSoldEachHourArray.reduce((partSum,a)=>partSum+a, 0)}`;
   ul.appendChild(li);
+  */
 };
 
+//Header Stand-alone Function
+function createHeader(){
+  let thead = document.querySelector('thead');
+  let tr = document.createElement('tr');
+  thead.appendChild(tr);
+
+  let th = document.createElement('th');
+  th.textContent = "City";
+  tr.appendChild(th);
+
+  for(let i = 0; i < hours.length; i++){
+    let th = document.createElement('th');
+    th.textContent = hours[i];
+    tr.appendChild(th);
+  }
+
+  th = document.createElement('th');
+  th.textContent = "Daily Location Total";
+  tr.appendChild(th);
+}
+
+
+
+// Creating the Instances
 let seattle = new City('Seattle',23,65,6.3);
 let tokyo = new City('Tokyo',3,24,1.2);
 let dubai = new City('Dubai',11,38,3.7);
@@ -66,9 +107,46 @@ for(let i = 0;i<cityArray.length;i++){
   cityArray[i].render();
 }
 
+createHeader();
+createFooter();
 
-//SEATTLE
+//Footer Stand-alone Function
+
+function createFooter(){
+  let tfoot = document.querySelector('tfoot');
+  let tr = document.createElement('tr');
+  tfoot.appendChild(tr);
+
+  let td = document.createElement('td');
+  td.textContent = "Totals";
+  tr.appendChild(td);
+
+  let hourlyTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  //this is ugly but it is the only way I can cast them as numbers to add numbers to.
+
+  for(let i = 0; i < cityArray.length; i++){
+
+    for(let j = 0; j < cityArray[i].cookiesSoldEachHourArray.length;j++){
+      hourlyTotal[j] += cityArray[i].cookiesSoldEachHourArray[j];
+      //console.log(cityArray[i].cookiesSoldEachHourArray[j]);
+      //console.log(hourlyTotal[j]);
+    }
+  }
+  
+  for(let i = 0; i < hourlyTotal.length; i++){
+    let td = document.createElement('td');
+    td.textContent = hourlyTotal[i];
+    tr.appendChild(td);
+  }
+
+}
+
+
+
+//ALL the CLASS 06 CODE
 /*
+//SEATTLE
+
 let seattle = {
   name: 'Seattle',
   min: 23,
