@@ -3,25 +3,70 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-font-family: Verdana, Geneva, Tahoma, sans-serif;
-color: #4379BC;
-font-size: 3rem;
+font-family: 'Josefin Sans', sans-serif;
+color: #6a9bd7;
 }
 
-body {
-  background-color: #906b3d3a;
-  width : 80%;
-  margin:auto;
+h1 {
+  font-size: 3rem;
+}
+
+h2{
+  font-size: 2rem;
 }
 
 header{
-  margin: 2rem auto 1rem auto
+  background-color: rgba(26, 25, 25, 0.924);
+  height: 100px;
+}
+
+nav{
+  width:80%;
+  margin:auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  
+}
+
+nav h1 {
+  padding-right: 2rem;
+}
+nav a {
+  padding: 1.5rem 2rem 1.5rem 3rem;
+  font-size: 2rem;
+  text-decoration: none;
+  color: white;
+}
+
+main {
+  background-color: #906b3d3a;
+  width : 80%;
+  margin: 30px auto 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+main img {
+  margin-bottom: 30px;
 }
 
 div {
-  display:flex;
+  width: 400px;
+  padding: 1rem;
+}
+
+div ul{
+  display: flex;
   flex-wrap: wrap;
-  flex: 200px;
+}
+
+
+section li{
+  padding: 1rem;
 }
 
 p {
@@ -52,4 +97,19 @@ tfoot {
 td, th{
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(21, 100, 51);
+}
+
+footer{
+  height: 150px;
+  background-color: rgba(26, 25, 25, 0.924);
+  color: white;
+}
+ footer div{
+  width: 80%;
+  margin: auto;
+  display: flex;
+ }
+ 
+footer div section{
+  padding: 1rem;
 }
