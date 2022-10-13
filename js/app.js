@@ -141,7 +141,38 @@ function createFooter(){
 
 }
 
+// Class 09 code for the form and events
 
+let form = document.querySelector('form');
+
+
+let handleSubmitofNewStore = function(event){
+  event.preventDefault();
+  console.log(event);
+  let cityName = event.target.cityName.value;
+  let minCust = parseInt(event.target.min.value);
+  let maxCust = parseInt(event.target.max.value);
+  let avgCookies = parseInt(event.target.avg.value);
+
+  let newStore = new City(cityName,minCust,maxCust,avgCookies);
+  
+  //remove footer from table, I guess it is like a recursive removal
+  let tfoot = document.querySelector('tfoot');
+  while (tfoot.hasChildNodes()) {
+    tfoot.removeChild(tfoot.firstChild);
+  }
+  
+  //add to the table
+  newStore.render();
+  
+  //add to city array
+  cityArray.push(newStore);
+  
+  //add the new footer
+  createFooter();
+};
+
+form.addEventListener('submit', handleSubmitofNewStore);
 
 //ALL the CLASS 06 CODE
 /*

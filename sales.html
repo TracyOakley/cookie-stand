@@ -18,6 +18,27 @@
     </nav>
   </header>
   <main>
+  <form>
+    <fieldset>
+      <legend>Add a Store</legend>
+      <label>
+        <input type="text" name="cityName" placeholder="Location of Store" required>
+      </label>
+      <fieldset>
+        <legend>Store Stats (per Hour)</legend>
+        <label>
+          <input type="number" name="min" placeholder="Minimum # of Customers" required>
+        </label>
+        <label>
+          <input type="number" name="max" placeholder="Maximum # of Customers" required>
+        </label>
+        <label>
+          <input type="number" name="avg" placeholder="Average # of  Cookies Sold" required>
+        </label>
+      </fieldset>
+      <button type="submit">Submit</button>
+    </fieldset>
+  </form>
   <div id="cityContainer">
   </div>
   <table>

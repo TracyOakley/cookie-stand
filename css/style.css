@@ -113,3 +113,34 @@ footer{
 footer div section{
   padding: 1rem;
 }
+
+/* Class 9 styles for forms */
+
+form {
+  width : 100%;
+}
+
+fieldset {
+  border: 1px solid rgba(26, 25, 25, 0.924);
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+}
+
+legend{
+  font-size: 1.2rem;
+  
+}
+
+textarea, label, input{
+  display: block;
+}
+
+textarea, input{
+  margin-bottom: 1rem;
+}
+
+input:focus{
+  border-color: white;
+}
