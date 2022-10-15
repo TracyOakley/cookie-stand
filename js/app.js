@@ -94,6 +94,7 @@ function createHeader(){
 
 
 
+
 // Creating the Instances
 let seattle = new City('Seattle',23,65,6.3);
 let tokyo = new City('Tokyo',3,24,1.2);
